@@ -5,8 +5,66 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Report from '../components/Report';
 import Settings from '../components/Settings';
 import Profile from '../components/Profile';
-import DashboardCard from '../components/DashboardCard';
-import RecentActivity from '../components/RecentActivity';
+
+
+
+
+const DashboardCard = ({ title, value, subtitle, icon: Icon }) => (
+  <div className="p-6 space-y-2 bg-slate-100 rounded-lg border">
+    <div className="flex justify-between items-start">
+      <h3 className="font-medium text-gray-900">{title}</h3>
+      <Icon className="w-5 h-5 text-gray-500" />
+    </div>
+    <div className="space-y-1">
+      <p className="text-3xl font-semibold">{value}</p>
+      <p className="text-sm text-gray-500">{subtitle}</p>
+    </div>
+  </div>
+);
+
+
+const ActivityItem = ({ type, description, date, icon: Icon }) => (
+  <div className="flex gap-4 py-4">
+    <div className="mt-1">
+      <Icon className="w-5 h-5 text-gray-500" />
+    </div>
+    <div className="flex-1 space-y-1">
+      <p className="font-medium text-gray-900">{type}</p>
+      <p className="text-gray-600">{description}</p>
+      <p className="text-sm text-gray-500">{date}</p>
+    </div>
+  </div>
+);
+
+const RecentActivity = () => (
+  <div className="p-6 bg-slate-100 rounded-lg border">
+    <h2 className="text-xl font-semibold mb-4">Recent Activity</h2>
+    <div className="divide-y divide-gray-100">
+      <ActivityItem
+        type="Appointment"
+        description="General check-up with Dr. Johnson"
+        date="2024-03-20"
+        icon={Calendar}
+      />
+      <ActivityItem
+        type="Test Result"
+        description="Blood test results available"
+        date="2024-03-18"
+        icon={FileText}
+      />
+      <ActivityItem
+        type="Medication"
+        description="Prescription refill for Lisinopril"
+        date="2024-03-15"
+        icon={Activity}
+      />
+    </div>
+  </div>
+);
+
+
+
+
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);

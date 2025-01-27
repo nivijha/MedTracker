@@ -6,3 +6,11 @@ export default {
   },
   plugins: [],
 };
+
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",  
+    "./components/**/*.{js,jsx,ts,tsx}"
+  ],
+  
+}
