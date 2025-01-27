@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-
 import { Activity, FileText, FlaskRound as Flask, Heart, LayoutDashboard, Menu, PlusCircle, User, X , Calendar , Stethoscope, Import,} from 'lucide-react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import Report from '../components/Report';
 import Settings from '../components/Settings';
 import Profile from '../components/Profile';
-import RecentActivity from '../components/RecentActivity';
 import DashboardCard from '../components/DashboardCard';
-
-
-
+import RecentActivity from '../components/RecentActivity';
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
