@@ -12,59 +12,11 @@ function Profile() {
 
     
     <div className="max-h-full bg-gray-50 flex h-screen">
-      {/* Sidebar */}
-      <div className={`${isSidebarOpen ? 'w-64' : 'w-0'} bg-white shadow-lg transition-all duration-300 overflow-hidden`}>
-        <div className="p-4">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center space-x-2">
-              <Activity className="h-6 w-6 text-blue-600" />
-              <span className="text-xl font-bold">MedTracker</span>
-            </div>
-            <button onClick={() => setIsSidebarOpen(false)} className="lg:hidden">
-              <X className="h-6 w-6" />
-            </button>
-          </div>
-
-          <nav className="space-y-2">
-            {['Dashboard', 'Reports', 'Profile', 'Settings'].map((item) => (
-              <button
-                key={item}
-                className="w-full flex items-center space-x-2 px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg"
-              >
-                {item === 'Dashboard' && <LayoutDashboard className="h-5 w-5" />}
-                {item === 'Reports' && <FileText className="h-5 w-5" />}
-                {item === 'Profile' && <User className="h-5 w-5" />}
-                <span>{item}</span>
-              </button>
-            ))}
-          </nav>
-        </div>
-      </div>
+      
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
-        {/* Header */}
-        <header className="bg-white shadow-sm">
-          <div className="flex items-center justify-between px-4 py-3">
-            <button
-              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-              className="p-2 hover:bg-gray-100 rounded-lg"
-            >
-              <Menu className="h-6 w-6" />
-            </button>
-            <div className="flex items-center space-x-4">
-              <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-                <PlusCircle className="h-5 w-5" />
-                <span>Add Report</span>
-              </button>
-              <img
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150"
-                alt="Profile"
-                className="h-8 w-8 rounded-full object-cover"
-              />
-            </div>
-          </div>
-        </header>
+        
 
         {/* Main Content Area */}
         <main className="p-6 flex-1 overflow-y-auto">

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Activity, FileText, FlaskRound as Flask, Heart, LayoutDashboard, Menu, PlusCircle, User, X , Calendar , Stethoscope, Import,} from 'lucide-react';
+import { Activity, FileText, FlaskRound as Flask, Heart, LayoutDashboard, Menu, PlusCircle, User, X , Calendar , Stethoscope, Import, Link,} from 'lucide-react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Report from '../components/Report';
 import Settings from '../components/Settings';
 import Profile from '../components/Profile';
-
+import Navbar from '../components/Navbar';
 
 
 
@@ -87,20 +87,11 @@ function App() {
             </button>
           </div>
 
-          <nav className="space-y-2">
-            {['Dashboard', 'Reports', 'Profile', 'Settings'].map((item) => (
-              <button
-                key={item}
-                className="w-full flex items-center space-x-2 px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg"
-              >
-                {item === 'Dashboard' && <LayoutDashboard className="h-5 w-5" />}
-                {item === 'Reports' && <FileText className="h-5 w-5" />}
-                {item === 'Profile' && <User className="h-5 w-5" />}
-                
-                <span>{item}</span>
-              </button>
-            ))}
-          </nav>
+          
+            <Navbar></Navbar>
+          
+
+
         </div>
       </div>
 
@@ -131,6 +122,13 @@ function App() {
 
         {/* Main Content Area */}
         <main className="p-6 flex-1 overflow-y-auto">
+        <Routes>
+        <Route path="/dashboard" element={<App />} />
+        <Route path="/reports" element={<Report />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/settings" element={<Settings />} />
+      </Routes>
+
         <div className="max-w-4xl mx-auto p-6 space-y-6">
       <div className="space-y-2">
         <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
