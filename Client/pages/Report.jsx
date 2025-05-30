@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import reports from '../../Server/test/reports.json'
 import { Activity, FileText, FlaskRound as Flask, Heart, LayoutDashboard, Menu, PlusCircle, User, X } from 'lucide-react';
 
 
@@ -7,54 +8,7 @@ function Report() {
   const [selectedReport, setSelectedReport] = useState(null);
 
 
-  const reports = [
-    {
-      type: "Blood Test",
-      status: "Normal",
-      date: "2024-03-15",
-      doctor: "Dr. Sarah Johnson",
-      hospital: "City General Hospital",
-      action: "View Details",
-      statusColor: "bg-green-100 text-green-600",
-    },
-    {
-      type: "ECG",
-      status: "Review Required",
-      date: "2024-03-10",
-      doctor: "Dr. Michael Chen",
-      hospital: "Heart Care Center",
-      action: "View Details",
-      statusColor: "bg-yellow-100 text-yellow-600",
-    },
-    {
-      type: "X-Ray",
-      status: "Normal",
-      date: "2024-03-05",
-      doctor: "Dr. Emily Wilson",
-      hospital: "City General Hospital",
-      action: "View Details",
-      statusColor: "bg-green-100 text-green-600",
-    },
-    {
-      type: "Blood Test",
-      status: "Normal",
-      date: "2024-02-20",
-      doctor: "Dr. Sarah Johnson",
-      hospital: "City General Hospital",
-      action: "View Details",
-      statusColor: "bg-green-100 text-green-600",
-    },
-    {
-      type: "MRI",
-      status: "Review Required",
-      date: "2024-02-15",
-      doctor: "Dr. Robert Brown",
-      hospital: "Neurological Institute",
-      action: "View Details",
-      statusColor: "bg-yellow-100 text-yellow-600",
-    },
-  ];
-
+  
 
   return (
 

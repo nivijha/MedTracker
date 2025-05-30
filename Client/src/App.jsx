@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Activity, FileText, FlaskRound as Flask, Heart, LayoutDashboard, Menu, PlusCircle, User, X , Calendar , Stethoscope, Import, Link,} from 'lucide-react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Report from '../components/Report';
-import Settings from '../components/Settings';
-import Profile from '../components/Profile';
-import Navbar from '../components/Navbar';
+import Report from '../pages/Report';
+import Settings from '../pages/Settings';
+import Profile from '../pages/Profile';
+import Navbar from '../pages/Navbar';
 
+import { ColorModeButton } from "./components/ui/color-mode"
 
 
 const DashboardCard = ({ title, value, subtitle, icon: Icon }) => (
@@ -80,7 +81,7 @@ function App() {
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center space-x-2">
               <Activity className="h-6 w-6 text-blue-600" />
-              <span className="text-xl font-bold">MedTracker</span>
+              <span className="text-xl font-bold ">MedTracker</span>
             </div>
             <button onClick={() => setIsSidebarOpen(false)} className="lg:hidden">
               <X className="h-6 w-6" />
@@ -98,15 +99,19 @@ function App() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Header */}
+
         <header className="bg-white shadow-sm">
+          
           <div className="flex items-center justify-between px-4 py-3">
             <button
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
               className="p-2 hover:bg-gray-100 rounded-lg"
             >
               <Menu className="h-6 w-6" />
+
             </button>
             <div className="flex items-center space-x-4">
+              <ColorModeButton/>
               <button className="flex items-center space-x-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
                 <PlusCircle className="h-5 w-5" />
                 <span>Add Report</span>
@@ -116,6 +121,7 @@ function App() {
                 alt="Profile"
                 className="h-8 w-8 rounded-full object-cover"
               />
+              
             </div>
           </div>
         </header>
