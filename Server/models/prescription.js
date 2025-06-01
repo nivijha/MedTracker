@@ -1,26 +1,42 @@
-const {Schema,model} = require('mongoose')
+const { Schema, model } = require("mongoose");
 
-const prescriptionSchema = new Schema({
-
-    doctorName:{
-        type:String,
+const embeddedPrescription = new Schema({
+    medicineName:{
+        type:String
     },
-    clinic:{
-        type:String,
+    dosage:{
+        type:String
     },
-    dateIssued:{
-        type:Date,
-        default:Date()
+    frequency:{
+        type:String
     },
-    notes:{
-        type:String,
-    },
-    medicines:{
-        type:Array,
-
+    duration:{
+        type:String
     }
+        
 })
 
-const Prescription = model('prescription',prescriptionSchema)
+const prescriptionSchema = new Schema({
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "user",
+  },
+  doctorName: {
+    type: String,
+  },
+  clinic: {
+    type: String,
+  },
+  dateIssued: {
+    type: Date,
+    default: Date(),
+  },
+  notes: {
+    type: String,
+  },
+  medicines:[embeddedPrescription],
+});
+
+const Prescription = model("prescription", prescriptionSchema);
 
 module.exports = Prescription;
