@@ -37,6 +37,6 @@ const prescriptionSchema = new Schema({
   medicines:[embeddedPrescription],
 });
 
-const Prescription = model("prescription", prescriptionSchema);
+const Prescription = model("Prescription", prescriptionSchema);
 
 module.exports = Prescription;

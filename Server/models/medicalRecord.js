@@ -25,6 +25,6 @@ const medicalRecordSchema = new Schema(
   { timestamps: true }
 );
 
-const MedicalRecord = model("medicalRecord", medicalRecordSchema);
+const MedicalRecord = model("MedicalRecord", medicalRecordSchema);
 
 module.exports = MedicalRecord;

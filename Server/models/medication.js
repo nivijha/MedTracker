@@ -25,6 +25,6 @@ const medicationSchema = new Schema({
     type: String,
   },
 });
-const Medication = model("medication", medicationSchema);
+const Medication = model("Medication", medicationSchema);
 
 module.exports = Medication;
