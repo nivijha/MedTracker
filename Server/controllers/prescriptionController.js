@@ -1,4 +1,4 @@
-const Prescription = require('../models/Prescription');
+const Prescription = require('../models/prescription');
 
 // GET all prescriptions for the logged in user
 exports.getAllPrescriptions = async (req, res) => {
