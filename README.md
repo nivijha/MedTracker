@@ -9,4 +9,3 @@ VLM - info scrape prescriptions
 mongodb atlas /netlify
 oAuth2
 
-//mongodb+srv://devvv4828:qPH6CGVD21Hlb3yX@cluster0.y6gfzfg.mongodb.net/ -sample
