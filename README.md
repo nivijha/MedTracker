@@ -19,6 +19,7 @@
 ## 🛠️ Tech Stack
 
 ### Frontend
+
 - **Next.js 14+** - React framework with App Router for optimal performance
 - **React 18+** - UI library with hooks for state management
 - **Tailwind CSS** - Utility-first CSS framework for rapid styling
@@ -29,6 +30,7 @@
 - **React Router** - Client-side routing with protected routes
 
 ### Backend
+
 - **Node.js 18+** - JavaScript runtime with ES6 modules
 - **Express.js** - Web framework with middleware support
 - **MongoDB** - NoSQL database with Mongoose ODM
@@ -42,6 +44,7 @@
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js 18+ and npm
 - MongoDB Atlas account
 - Git and GitHub account (for deployment)
@@ -49,12 +52,14 @@
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/your-username/medtracker.git
    cd medtracker
    ```
 
 2. **Install dependencies**
+
    ```bash
    # Install server dependencies
    cd server
@@ -66,6 +71,7 @@
    ```
 
 3. **Set up environment variables**
+
    ```bash
    # Server
    cp server/.env.example server/.env
@@ -77,6 +83,7 @@
    ```
 
 4. **Start the development servers**
+
    ```bash
    # Start server (in one terminal)
    cd server
@@ -119,6 +126,7 @@ medtracker/
 ## 🔌 API Documentation
 
 ### Authentication
+
 - `POST /api/auth/register` - Register a new user
 - `POST /api/auth/login` - Login a user
 - `GET /api/auth/me` - Get current user
@@ -129,6 +137,7 @@ medtracker/
 - `PUT /api/auth/resetpassword/:token` - Reset password
 
 ### Medical Records
+
 - `GET /api/records` - Get all records for a user
 - `GET /api/records/:id` - Get a specific record
 - `POST /api/records` - Create a new record
@@ -142,18 +151,21 @@ medtracker/
 ## 🎨 UI Components
 
 ### Authentication
+
 - Login form with validation
 - Signup form with password strength indicator
 - Password reset flow
 - Profile management
 
 ### Medical Records
+
 - Record creation form with file upload
 - Record list with filtering and search
 - Record detail view
 - Edit and delete functionality
 
 ### Common
+
 - Responsive navigation
 - Loading states
 - Error handling
@@ -163,33 +175,39 @@ medtracker/
 ## 🧪 Testing
 
 ### Backend Testing
+
 - Unit tests for controllers and models
 - Integration tests for API endpoints
 - Error handling tests
 - Authentication middleware tests
 
 ### Frontend Testing
+
 - Component unit tests with Jest and React Testing Library
 - Integration tests for user flows
 - End-to-end tests with Cypress
 
 ### Test Coverage
+
 - Backend: Aim for >80% code coverage
 - Frontend: Aim for >70% component coverage
 
 ## 🚀 Deployment
 
 ### Backend Options
+
 - **Render** - Recommended for Node.js applications
 - **Railway** - Good for containerized deployments
 - **Vercel Serverless** - For serverless functions
 
 ### Frontend Options
+
 - **Vercel** - Recommended for Next.js applications
 - **Netlify** - Good for static sites
 - **AWS Amplify** - For full-stack applications
 
 ### Environment Variables
+
 ```bash
 # Backend (.env)
 NODE_ENV=production
@@ -207,17 +225,23 @@ NEXT_PUBLIC_API_URL=your_deployed_backend_url
 
 1. **Fork the repository**
 2. **Create a feature branch**
+
    ```bash
    git checkout -b feature/AmazingFeature
    ```
+
 3. **Commit your changes**
+
    ```bash
    git commit -m 'Add some AmazingFeature'
    ```
+
 4. **Push to the branch**
+
    ```bash
    git push origin feature/AmazingFeature
    ```
+
 5. **Open a Pull Request**
    - Provide a clear description of your changes
    - Link to any relevant issues

@@ -7,6 +7,7 @@ This guide provides comprehensive testing strategies for the MedTracker applicat
 ### 1. Unit Testing
 
 #### Authentication Tests
+
 ```bash
 # Test user registration
 POST http://localhost:5000/api/auth/register
@@ -45,6 +46,7 @@ Content-Type: application/json
 ```
 
 #### Medical Record Tests
+
 ```bash
 # Test record creation
 POST http://localhost:5000/api/records
@@ -81,12 +83,14 @@ Authorization: Bearer <token>
 ### 2. Integration Testing
 
 #### Database Connection
+
 ```bash
 # Test MongoDB connection
 node -e "console.log('Testing DB connection...')" server/index.js
 ```
 
 #### API Endpoint Testing
+
 ```bash
 # Test health check endpoint
 GET http://localhost:5000/api/health
@@ -95,6 +99,7 @@ GET http://localhost:5000/api/health
 ### 3. Error Handling Tests
 
 #### Authentication Errors
+
 ```bash
 # Test invalid credentials
 POST http://localhost:5000/api/auth/login
@@ -107,6 +112,7 @@ Content-Type: application/json
 ```
 
 #### Authorization Errors
+
 ```bash
 # Test protected route without token
 GET http://localhost:5000/api/records
@@ -119,6 +125,7 @@ Authorization: Bearer invalid_token
 ```
 
 #### Validation Errors
+
 ```bash
 # Test record creation with missing fields
 POST http://localhost:5000/api/records
@@ -136,6 +143,7 @@ Content-Type: application/json
 ### 1. Component Testing
 
 #### Authentication Components
+
 ```javascript
 // Test Login component
 import { render, screen, fireEvent } from '@testing-library/react';
@@ -181,6 +189,7 @@ test('submits form with correct data', () => {
 ```
 
 #### Dashboard Component
+
 ```javascript
 // Test Dashboard component
 import { render, screen } from '@testing-library/react';
@@ -202,6 +211,7 @@ test('displays user welcome message', () => {
 ### 2. Integration Testing
 
 #### Authentication Flow
+
 ```javascript
 // Test complete authentication flow
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
@@ -247,6 +257,7 @@ test('complete authentication flow', async () => {
 ### 3. End-to-End Testing
 
 #### Record Management Flow
+
 ```javascript
 // Test complete record management flow
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
@@ -311,20 +322,24 @@ test('complete record management flow', async () => {
 ### 1. Common Issues & Solutions
 
 #### Authentication Issues
+
 - **Problem**: User stays logged in after token expires
 - **Solution**: Implement token refresh mechanism or redirect to login on 401 errors
 
 #### File Upload Issues
+
 - **Problem**: Large files cause timeout
 - **Solution**: Increase timeout limit and implement progress indicators
 
 #### CORS Issues
+
 - **Problem**: Frontend can't access backend API
 - **Solution**: Ensure proper CORS configuration in backend
 
 ### 2. Debugging Tools
 
 #### Backend Debugging
+
 ```javascript
 // Add debugging middleware
 app.use((req, res, next) => {
@@ -336,6 +351,7 @@ app.use((req, res, next) => {
 ```
 
 #### Frontend Debugging
+
 ```javascript
 // Add debugging to API calls
 const apiCall = async () => {
@@ -354,6 +370,7 @@ const apiCall = async () => {
 ### 3. Performance Testing
 
 #### Load Testing
+
 ```bash
 # Install artillery for load testing
 npm install -g artillery
@@ -381,6 +398,7 @@ artillery run artillery-config.yml
 ## 📋 Testing Checklist
 
 ### Backend Testing
+
 - [ ] Unit tests for all controllers
 - [ ] Integration tests for API endpoints
 - [ ] Error handling tests
@@ -390,6 +408,7 @@ artillery run artillery-config.yml
 - [ ] Load testing for critical endpoints
 
 ### Frontend Testing
+
 - [ ] Component unit tests
 - [ ] Integration tests for user flows
 - [ ] Form validation tests
@@ -399,6 +418,7 @@ artillery run artillery-config.yml
 - [ ] Responsive design tests
 
 ### End-to-End Testing
+
 - [ ] Complete authentication flow
 - [ ] Record creation and management flow
 - [ ] File upload flow
@@ -406,6 +426,7 @@ artillery run artillery-config.yml
 - [ ] Error recovery flows
 
 ### Cross-Browser Testing
+
 - [ ] Chrome
 - [ ] Firefox
 - [ ] Safari
@@ -413,6 +434,7 @@ artillery run artillery-config.yml
 - [ ] Mobile browsers
 
 ### Performance Testing
+
 - [ ] Page load time tests
 - [ ] API response time tests
 - [ ] File upload performance tests
@@ -421,6 +443,7 @@ artillery run artillery-config.yml
 ## 🚀 Deployment Testing
 
 ### Staging Environment
+
 - [ ] Deploy to staging environment
 - [ ] Test all critical user flows
 - [ ] Verify database migrations
@@ -428,6 +451,7 @@ artillery run artillery-config.yml
 - [ ] Test email notifications
 
 ### Production Environment
+
 - [ ] Smoke tests for all major features
 - [ ] Regression tests for recent changes
 - [ ] Performance monitoring setup
@@ -437,18 +461,21 @@ artillery run artillery-config.yml
 ## 📊 Test Reporting
 
 ### Test Coverage
+
 - [ ] Backend: Aim for >80% code coverage
 - [ ] Frontend: Aim for >70% component coverage
 - [ ] Generate coverage reports
 - [ ] Set up coverage badges in README
 
 ### Bug Tracking
+
 - [ ] Set up issue tracking system
 - [ ] Create bug report templates
 - [ ] Define severity levels
 - [ ] Establish bug fix workflow
 
 ### Test Documentation
+
 - [ ] Document test cases
 - [ ] Create test data fixtures
 - [ ] Write test execution guides
@@ -457,6 +484,7 @@ artillery run artillery-config.yml
 ## 🔍 Security Testing
 
 ### Authentication Security
+
 - [ ] Test SQL injection attempts
 - [ ] Test XSS vulnerabilities
 - [ ] Test CSRF protection
@@ -465,6 +493,7 @@ artillery run artillery-config.yml
 - [ ] Test rate limiting
 
 ### Data Security
+
 - [ ] Test file upload restrictions
 - [ ] Test data access controls
 - [ ] Test data encryption
@@ -472,6 +501,7 @@ artillery run artillery-config.yml
 - [ ] Test data retention policies
 
 ### API Security
+
 - [ ] Test API rate limiting
 - [ ] Test input validation
 - [ ] Test error message sanitization
@@ -481,6 +511,7 @@ artillery run artillery-config.yml
 ## 📝 Test Automation
 
 ### Continuous Integration
+
 - [ ] Set up GitHub Actions for automated testing
 - [ ] Configure test runners
 - [ ] Set up test databases
@@ -488,6 +519,7 @@ artillery run artillery-config.yml
 - [ ] Set up test reporting
 
 ### Test Scheduling
+
 - [ ] Schedule daily regression tests
 - [ ] Schedule weekly performance tests
 - [ ] Schedule monthly security scans
@@ -496,6 +528,7 @@ artillery run artillery-config.yml
 ## 🐛 Troubleshooting
 
 ### Common Issues
+
 1. **Authentication failures**
    - Check token format
    - Verify CORS configuration
@@ -517,6 +550,7 @@ artillery run artillery-config.yml
    - Check CSS conflicts
 
 ### Debugging Steps
+
 1. Identify the specific issue
 2. Reproduce the issue consistently
 3. Check logs for error messages
@@ -527,6 +561,7 @@ artillery run artillery-config.yml
 ## 📚 Resources
 
 ### Testing Tools
+
 - [Jest](https://jestjs.io/) - JavaScript testing framework
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - React component testing
 - [Postman](https://www.postman.com/) - API testing
@@ -535,6 +570,7 @@ artillery run artillery-config.yml
 - [Sentry](https://sentry.io/) - Error tracking
 
 ### Documentation
+
 - [Testing Best Practices](https://martinfowler.com/articles/testing.html)
 - [JavaScript Testing Style Guide](https://github.com/airbnb/javascript)
 - [React Testing Documentation](https://reactjs.org/docs/testing.html)

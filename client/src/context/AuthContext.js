@@ -1,3 +1,5 @@
+"use client"
+
 import React, { createContext, useContext, useReducer, useEffect, useState } from 'react';
 import axios from 'axios';
 import { ToastContainer } from '../components/Toast';

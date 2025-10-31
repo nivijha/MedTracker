@@ -5,8 +5,10 @@ This guide provides detailed instructions for implementing the MedTracker projec
 ## 📅 Day-by-Day Implementation
 
 ### Day 1: Project Setup ✅
+
 **Status**: Completed
 **Tasks Done**:
+
 - ✅ Created environment configuration files (.env.example)
 - ✅ Updated package.json with required dependencies
 - ✅ Created uploads directory with .gitignore
@@ -16,7 +18,9 @@ This guide provides detailed instructions for implementing the MedTracker projec
 **Next Steps**: Run `npm run install-all` to install all dependencies
 
 ### Day 2: UI Design (Member 1 - Frontend)
+
 **Tasks**:
+
 - Create wireframes in Figma for:
   - Login/Signup pages
   - Dashboard with medical records overview
@@ -28,11 +32,14 @@ This guide provides detailed instructions for implementing the MedTracker projec
 - Create component library documentation
 
 **Deliverables**:
+
 - Figma wireframes link
 - Design system documentation
 
 ### Day 3: Backend Setup (Member 2 - Backend)
+
 **Tasks**:
+
 - Refactor Express server structure with proper middleware
 - Set up MongoDB Atlas connection with proper configuration
 - Implement proper error handling and logging
@@ -40,13 +47,16 @@ This guide provides detailed instructions for implementing the MedTracker projec
 - Set up development and production configurations
 
 **Files to Modify**:
+
 - `server/index.js`
 - `server/config/db.js`
 - Create `server/middleware/` directory
 - Create `server/utils/` directory
 
 ### Day 4: Auth System (Member 2 - Backend)
+
 **Tasks**:
+
 - Install and configure JWT and bcrypt
 - Create User model with proper schema validation
 - Implement authentication middleware
@@ -55,13 +65,16 @@ This guide provides detailed instructions for implementing the MedTracker projec
 - Create auth routes with proper validation
 
 **Files to Create**:
+
 - `server/models/User.js`
 - `server/controllers/authController.js`
 - `server/routes/authRoutes.js`
 - `server/middleware/auth.js`
 
 ### Day 5: API Development (Member 2 - Backend)
+
 **Tasks**:
+
 - Create Medical Record model with proper schema
 - Implement CRUD controllers for medical records
 - Create API routes with proper validation
@@ -70,12 +83,15 @@ This guide provides detailed instructions for implementing the MedTracker projec
 - Create API documentation
 
 **Files to Create**:
+
 - `server/models/MedicalRecord.js`
 - `server/controllers/recordController.js`
 - `server/routes/recordRoutes.js`
 
 ### Day 6: Frontend Skeleton (Member 1 - Frontend)
+
 **Tasks**:
+
 - Install and configure React Router
 - Create proper routing structure for all pages
 - Refactor existing components to work with routing
@@ -84,13 +100,16 @@ This guide provides detailed instructions for implementing the MedTracker projec
 - Set up 404 and error pages
 
 **Files to Modify**:
+
 - `client/src/app/layout.jsx`
 - `client/src/components/Navbar.jsx`
 - Create `client/src/pages/` directory
 - Create `client/src/context/` directory
 
 ### Day 7: Auth Pages (Member 1 - Frontend)
+
 **Tasks**:
+
 - Refactor existing Login form with proper validation
 - Create Signup form with validation
 - Install and configure Axios for API calls
@@ -99,12 +118,15 @@ This guide provides detailed instructions for implementing the MedTracker projec
 - Add form error handling and loading states
 
 **Files to Create**:
+
 - `client/src/context/AuthContext.js`
 - `client/src/services/api.js`
 - `client/src/pages/Signup.jsx`
 
 ### Day 8: Dashboard UI (Member 1 - Frontend)
+
 **Tasks**:
+
 - Refactor Dashboard component to display real data
 - Create components for medical record cards
 - Implement user information display
@@ -113,27 +135,34 @@ This guide provides detailed instructions for implementing the MedTracker projec
 - Add loading and error states
 
 **Files to Modify**:
+
 - `client/src/app/page.jsx`
 - Create `client/src/components/DashboardCard.jsx`
 - Create `client/src/components/RecentActivity.jsx`
 
 ### Day 9: File Upload (Member 2 - Backend & Member 1 - Frontend)
+
 **Backend Tasks**:
+
 - Install and configure Multer for file uploads
 - Create file upload endpoints with validation
 - Implement file storage (local or cloud)
 
 **Frontend Tasks**:
+
 - Create file upload form with drag-and-drop
 - Implement file preview functionality
 - Add upload progress indicators
 
 **Files to Create**:
+
 - `server/middleware/upload.js`
 - `client/src/components/FileUpload.jsx`
 
 ### Day 10: API Integration (Both)
+
 **Tasks**:
+
 - Connect all frontend pages with backend APIs
 - Implement proper error handling for API calls
 - Add loading states for all data fetching
@@ -142,7 +171,9 @@ This guide provides detailed instructions for implementing the MedTracker projec
 - Test all CRUD operations end-to-end
 
 ### Day 11: Testing & Debugging (Both)
+
 **Tasks**:
+
 - Test complete authentication flow
 - Test medical record CRUD operations
 - Fix CORS issues between frontend and backend
@@ -151,7 +182,9 @@ This guide provides detailed instructions for implementing the MedTracker projec
 - Test file upload functionality
 
 ### Day 12: UI Improvements (Member 1 - Frontend)
+
 **Tasks**:
+
 - Add responsive design for mobile devices
 - Implement loading spinners and skeleton screens
 - Add proper error messages and notifications
@@ -160,7 +193,9 @@ This guide provides detailed instructions for implementing the MedTracker projec
 - Optimize performance for large data sets
 
 ### Day 13: Deployment (Backend) (Member 2 - Backend)
+
 **Tasks**:
+
 - Prepare backend for production deployment
 - Set up environment variables for production
 - Deploy backend on Render or Railway
@@ -169,7 +204,9 @@ This guide provides detailed instructions for implementing the MedTracker projec
 - Create deployment documentation
 
 ### Day 14: Deployment (Frontend) (Member 1 - Frontend)
+
 **Tasks**:
+
 - Prepare frontend for production deployment
 - Configure environment variables for production
 - Deploy frontend on Vercel or Netlify
@@ -178,7 +215,9 @@ This guide provides detailed instructions for implementing the MedTracker projec
 - Set up custom domain if needed
 
 ### Day 15: Documentation (Both)
+
 **Tasks**:
+
 - Update README with installation and usage instructions
 - Add screenshots of the application
 - Create API documentation
@@ -189,11 +228,13 @@ This guide provides detailed instructions for implementing the MedTracker projec
 ## 🛠️ Development Commands
 
 ### Installation
+
 ```bash
 npm run install-all  # Install all dependencies for root, server, and client
 ```
 
 ### Development
+
 ```bash
 npm run dev          # Run both server and client in development mode
 npm run server       # Run only the server
@@ -201,6 +242,7 @@ npm run client       # Run only the client
 ```
 
 ### Production
+
 ```bash
 npm run build        # Build the client for production
 npm start            # Start the server in production mode

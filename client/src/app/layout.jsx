@@ -1,6 +1,8 @@
+"use client"
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from '../App';
+import App from './page';
 import './globals.css';
 
 // Get the root element

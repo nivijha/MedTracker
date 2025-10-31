@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from 'react';
 import { Activity, FileText, FlaskRound as Flask, Heart, LayoutDashboard, Menu, PlusCircle, User, X } from 'lucide-react';
 import Image from 'next/image';

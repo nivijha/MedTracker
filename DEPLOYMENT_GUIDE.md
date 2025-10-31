@@ -7,6 +7,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
 ### Option 1: Deploy to Render
 
 #### Prerequisites
+
 - [ ] Node.js 18+ installed
 - [ ] MongoDB Atlas account and cluster
 - [ ] Render account (free tier is sufficient for testing)
@@ -15,12 +16,14 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
 #### Step 1: Prepare Backend for Deployment
 
 1. **Update Environment Variables**
+
    ```bash
    # Create production environment file
    cp server/.env.example server/.env.production
    ```
 
 2. **Configure Production Environment**
+
    ```bash
    # Edit server/.env.production with your production values
    NODE_ENV=production
@@ -33,6 +36,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
    ```
 
 3. **Update Package.json**
+
    ```json
    // Add to server/package.json
    "scripts": {
@@ -60,6 +64,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
    - Add environment variables from your `.env.production` file
 
 3. **Configure Environment Variables**
+
    ```bash
    # Add these in Render dashboard
    NODE_ENV=production
@@ -77,6 +82,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
 ### Option 2: Deploy to Railway
 
 #### Prerequisites
+
 - [ ] Node.js 18+ installed
 - [ ] MongoDB Atlas account and cluster
 - [ ] Railway account
@@ -85,6 +91,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
 #### Step 1: Prepare Backend for Deployment
 
 1. **Create Railway Project**
+
    ```bash
    # Install Railway CLI
    npm install -g @railway/cli
@@ -94,6 +101,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
    ```
 
 2. **Initialize Railway Project**
+
    ```bash
    # Navigate to server directory
    cd server
@@ -105,6 +113,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
 #### Step 2: Deploy to Railway
 
 1. **Configure Environment Variables**
+
    ```bash
    # Set environment variables
    railway variables set NODE_ENV=production
@@ -115,6 +124,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
    ```
 
 2. **Deploy Application**
+
    ```bash
    # Deploy to Railway
    railway up
@@ -127,6 +137,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
 ### Option 3: Deploy to Vercel (Serverless)
 
 #### Prerequisites
+
 - [ ] Node.js 18+ installed
 - [ ] Vercel account
 - [ ] Git repository with backend code
@@ -134,12 +145,14 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
 #### Step 1: Prepare Backend for Serverless Deployment
 
 1. **Create API Routes File**
+
    ```javascript
    // Create server/api/index.js
    module.exports = require('./index.js');
    ```
 
 2. **Update Package.json**
+
    ```json
    // Add to server/package.json
    "main": "api/index.js",
@@ -152,11 +165,13 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
 #### Step 2: Deploy to Vercel
 
 1. **Install Vercel CLI**
+
    ```bash
    npm install -g vercel
    ```
 
 2. **Deploy to Vercel**
+
    ```bash
    # Navigate to server directory
    cd server
@@ -174,6 +189,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
 ### Option 1: Deploy to Vercel
 
 #### Prerequisites
+
 - [ ] Node.js 18+ installed
 - [ ] Vercel account
 - [ ] Git repository with frontend code
@@ -181,18 +197,21 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
 #### Step 1: Prepare Frontend for Deployment
 
 1. **Update Environment Variables**
+
    ```bash
    # Create production environment file
    cp client/.env.example client/.env.production
    ```
 
 2. **Configure Production Environment**
+
    ```bash
    # Edit client/.env.production with your production values
    NEXT_PUBLIC_API_URL=your_deployed_backend_url
    ```
 
 3. **Update Package.json**
+
    ```json
    // Add to client/package.json
    "scripts": {
@@ -216,6 +235,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
    - Configure build settings
 
 3. **Configure Environment Variables**
+
    ```bash
    # Add these in Vercel dashboard
    NEXT_PUBLIC_API_URL=your_deployed_backend_url
@@ -229,6 +249,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
 ### Option 2: Deploy to Netlify
 
 #### Prerequisites
+
 - [ ] Node.js 18+ installed
 - [ ] Netlify account
 - [ ] Git repository with frontend code
@@ -236,6 +257,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
 #### Step 1: Prepare Frontend for Deployment
 
 1. **Update Build Configuration**
+
    ```json
    // Add to client/next.config.js
    /** @type {import('next').NextConfig} */
@@ -251,6 +273,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
    ```
 
 2. **Update Package.json**
+
    ```json
    // Add to client/package.json
    "scripts": {
@@ -263,6 +286,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
 #### Step 2: Deploy to Netlify
 
 1. **Build Application**
+
    ```bash
    # Navigate to client directory
    cd client
@@ -278,6 +302,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
    - Configure build settings
 
 3. **Configure Environment Variables**
+
    ```bash
    # Add these in Netlify dashboard
    NEXT_PUBLIC_API_URL=your_deployed_backend_url
@@ -293,6 +318,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
 ### Backend Configuration
 
 1. **Set Up CORS**
+
    ```javascript
    // In server/index.js
    const cors = require('cors');
@@ -304,12 +330,14 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
    ```
 
 2. **Configure File Upload**
+
    ```javascript
    // In server/index.js
    app.use('/uploads', express.static('uploads'));
    ```
 
 3. **Set Up Rate Limiting**
+
    ```javascript
    // In server/index.js
    const rateLimit = require('express-rate-limit');
@@ -323,6 +351,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
 ### Frontend Configuration
 
 1. **Update API Base URL**
+
    ```javascript
    // In client/src/services/api.js
    const api = axios.create({
@@ -332,6 +361,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
    ```
 
 2. **Configure Error Handling**
+
    ```javascript
    // In client/src/services/api.js
    api.interceptors.response.use(
@@ -352,12 +382,14 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
 ### Backend Testing
 
 1. **API Health Check**
+
    ```bash
    # Test health endpoint
    curl https://your-backend-domain.com/api/health
    ```
 
 2. **Authentication Testing**
+
    ```bash
    # Test user registration
    curl -X POST https://your-backend-domain.com/api/auth/register \
@@ -371,6 +403,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
    ```
 
 3. **Record Management Testing**
+
    ```bash
    # Test record creation
    curl -X POST https://your-backend-domain.com/api/records \
@@ -402,6 +435,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
 ### Backend Monitoring
 
 1. **Set Up Logging**
+
    ```javascript
    // In server/index.js
    const winston = require('winston');
@@ -428,6 +462,7 @@ This guide provides step-by-step instructions for deploying the MedTracker appli
 ### Frontend Monitoring
 
 1. **Set Up Error Tracking**
+
    ```javascript
    // In client/src/pages/_app.js
    import * as Sentry from '@sentry/nextjs';
@@ -577,12 +612,14 @@ jobs:
 ## 📚 Additional Resources
 
 ### Documentation
+
 - [Render Documentation](https://render.com/docs/)
 - [Vercel Documentation](https://vercel.com/docs/)
 - [Railway Documentation](https://docs.railway.app/)
 - [Netlify Documentation](https://docs.netlify.com/)
 
 ### Deployment Tools
+
 - [Docker](https://www.docker.com/) - Containerization
 - [GitHub Actions](https://github.com/features/actions) - CI/CD
 - [Terraform](https://www.terraform.io/) - Infrastructure as code
