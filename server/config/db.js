@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { AppError } from "../utils/errorHandler.js";
 
 const connectDB = async () => {
   try {
@@ -6,10 +7,29 @@ const connectDB = async () => {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
+    
     console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
+    
+    // Handle connection events
+    mongoose.connection.on('error', (err) => {
+      console.error('❌ MongoDB connection error:', err);
+    });
+    
+    mongoose.connection.on('disconnected', () => {
+      console.log('⚠️ MongoDB disconnected');
+    });
+    
+    // Handle application termination
+    process.on('SIGINT', async () => {
+      await mongoose.connection.close();
+      console.log('🔌 MongoDB connection closed through app termination');
+      process.exit(0);
+    });
+    
+    return conn;
   } catch (error) {
-    console.error(`❌ Error: ${error.message}`);
-    process.exit(1);
+    console.error(`❌ MongoDB connection failed: ${error.message}`);
+    throw new AppError('Database connection failed', 500);
   }
 };
 

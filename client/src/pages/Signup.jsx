@@ -1,21 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Github, Mail, Eye, EyeOff } from 'lucide-react';
-import { useAuth } from '../../context/AuthContext';
-import LoadingSpinner from '../../components/LoadingSpinner';
+import { Link, useNavigate } from 'react-router-dom';
+import { Eye, EyeOff } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import LoadingSpinner from '../components/LoadingSpinner';
 
-const Login = () => {
+const Signup = () => {
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
-    password: ''
+    password: '',
+    confirmPassword: ''
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const [passwordStrength, setPasswordStrength] = useState('');
   
-  const { login, isAuthenticated, error, clearError } = useAuth();
+  const { register, isAuthenticated } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
 
   // Redirect if already authenticated
   useEffect(() => {
@@ -39,6 +42,28 @@ const Login = () => {
         [name]: ''
       }));
     }
+
+    // Check password strength
+    if (name === 'password') {
+      const strength = checkPasswordStrength(value);
+      setPasswordStrength(strength);
+    }
+  };
+
+  // Password strength checker
+  const checkPasswordStrength = (password) => {
+    if (!password) return '';
+    
+    let strength = '';
+    if (password.length < 6) {
+      strength = 'Weak';
+    } else if (password.length < 10) {
+      strength = 'Medium';
+    } else {
+      strength = 'Strong';
+    }
+    
+    return strength;
   };
 
   // Handle form submission
@@ -47,8 +72,12 @@ const Login = () => {
     
     // Basic validation
     const newErrors = {};
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
     if (!formData.email) newErrors.email = 'Email is required';
     if (!formData.password) newErrors.password = 'Password is required';
+    if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = 'Passwords do not match';
+    }
     
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -56,17 +85,23 @@ const Login = () => {
     }
 
     setLoading(true);
-    clearError();
     
-    const result = await login(formData.email, formData.password);
+    const result = await register(formData);
     
     if (result.success) {
-      // Redirect to intended page or dashboard
-      const from = location.state?.from?.pathname || '/dashboard';
-      navigate(from, { replace: true });
+      navigate('/dashboard');
     } else {
       setErrors({ general: result.error });
       setLoading(false);
+    }
+  };
+
+  const getPasswordStrengthColor = () => {
+    switch (passwordStrength) {
+      case 'Weak': return 'text-red-600';
+      case 'Medium': return 'text-yellow-600';
+      case 'Strong': return 'text-green-600';
+      default: return 'text-gray-600';
     }
   };
 
@@ -75,28 +110,21 @@ const Login = () => {
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Sign in to your account
+            Create your account
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             Or{' '}
-            <Link 
-              to="/signup" 
+            <Link
+              to="/login"
               className="font-medium text-blue-600 hover:text-blue-500"
             >
-              create a new account
+              sign in to your existing account
             </Link>
           </p>
         </div>
         
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
           {/* Error message */}
-          {error && (
-            <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
-              <p className="text-sm text-red-600">{error}</p>
-            </div>
-          )}
-          
-          {/* Form errors */}
           {errors.general && (
             <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
               <p className="text-sm text-red-600">{errors.general}</p>
@@ -104,6 +132,30 @@ const Login = () => {
           )}
 
           <form className="space-y-6" onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                Full name
+              </label>
+              <div className="mt-1">
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  autoComplete="name"
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
+                  className={`block w-full appearance-none rounded-md border px-3 py-2 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm ${
+                    errors.name ? 'border-red-300' : 'border-gray-300'
+                  }`}
+                  placeholder="John Doe"
+                />
+                {errors.name && (
+                  <p className="mt-2 text-sm text-red-600">{errors.name}</p>
+                )}
+              </div>
+            </div>
+
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                 Email address
@@ -137,14 +189,14 @@ const Login = () => {
                   id="password"
                   name="password"
                   type={showPassword ? 'text' : 'password'}
-                  autoComplete="current-password"
+                  autoComplete="new-password"
                   required
                   value={formData.password}
                   onChange={handleChange}
                   className={`block w-full appearance-none rounded-md border px-3 py-2 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm pr-10 ${
                     errors.password ? 'border-red-300' : 'border-gray-300'
                   }`}
-                  placeholder="•••••••••"
+                  placeholder="••••••••"
                 />
                 <button
                   type="button"
@@ -161,16 +213,45 @@ const Login = () => {
                   <p className="mt-2 text-sm text-red-600">{errors.password}</p>
                 )}
               </div>
+              {passwordStrength && (
+                <p className={`mt-2 text-sm ${getPasswordStrengthColor()}`}>
+                  Password strength: {passwordStrength}
+                </p>
+              )}
             </div>
 
-            <div className="flex items-center justify-between">
-              <div className="text-sm">
-                <Link 
-                  to="/forgot-password" 
-                  className="font-medium text-blue-600 hover:text-blue-500"
+            <div>
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+                Confirm password
+              </label>
+              <div className="mt-1 relative">
+                <input
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  type={showConfirmPassword ? 'text' : 'password'}
+                  autoComplete="new-password"
+                  required
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                  className={`block w-full appearance-none rounded-md border px-3 py-2 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm pr-10 ${
+                    errors.confirmPassword ? 'border-red-300' : 'border-gray-300'
+                  }`}
+                  placeholder="••••••••"
+                />
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-0 flex items-center pr-3"
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 >
-                  Forgot your password?
-                </Link>
+                  {showConfirmPassword ? (
+                    <EyeOff className="h-4 w-4 text-gray-400" />
+                  ) : (
+                    <Eye className="h-4 w-4 text-gray-400" />
+                  )}
+                </button>
+                {errors.confirmPassword && (
+                  <p className="mt-2 text-sm text-red-600">{errors.confirmPassword}</p>
+                )}
               </div>
             </div>
 
@@ -183,45 +264,15 @@ const Login = () => {
                 {loading ? (
                   <LoadingSpinner size="sm" text="" />
                 ) : (
-                  'Sign in'
+                  'Create account'
                 )}
               </button>
             </div>
           </form>
-
-          {/* Social Login */}
-          <div className="mt-6">
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-300" />
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="px-2 bg-white text-gray-500">Or continue with</span>
-              </div>
-            </div>
-
-            <div className="mt-6 grid grid-cols-2 gap-3">
-              <button
-                type="button"
-                className="inline-flex justify-center w-full rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
-              >
-                <Github className="h-5 w-5" />
-                <span className="ml-2">GitHub</span>
-              </button>
-
-              <button
-                type="button"
-                className="inline-flex justify-center w-full rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
-              >
-                <Mail className="h-5 w-5" />
-                <span className="ml-2">Google</span>
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Signup;

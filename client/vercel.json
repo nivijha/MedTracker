@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next",
+      "config": {
+        "distDir": ".next"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "pages/_app.js",
+      "dest": "index.js"
+    },
+    {
+      "src": "pages/_document.js",
+      "dest": "_document.js"
+    },
+    {
+      "src": "pages/api/**/*.js",
+      "dest": "api/"
+    }
+  ],
+  "env": {
+    "NEXT_PUBLIC_API_URL": "@api_url"
+  }
+}
