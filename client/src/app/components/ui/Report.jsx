@@ -1,5 +1,6 @@
+"use client";
 import React, { useState } from 'react';
-import reports from '../../Server/test/reports.json'
+import reports from '../../server/controllers/userControllers.js'
 import { Activity, FileText, FlaskRound as Flask, Heart, LayoutDashboard, Menu, PlusCircle, User, X } from 'lucide-react';
 
 
