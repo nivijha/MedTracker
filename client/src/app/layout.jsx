@@ -1,13 +1,19 @@
 "use client"
 
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './page';
+import { AuthProvider } from './context/AuthContext';
+import { ToastContainer } from './components/Toast';
 import './globals.css';
 
-// Get the root element
-const container = document.getElementById('root');
-
-// Create a root and render the app
-const root = ReactDOM.createRoot(container);
-root.render(<App />);
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        <AuthProvider>
+          {children}
+          <ToastContainer />
+        </AuthProvider>
+      </body>
+    </html>
+  );
+}

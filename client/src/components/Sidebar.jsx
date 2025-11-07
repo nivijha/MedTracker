@@ -1,5 +1,8 @@
+"use client"
+
 import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { 
   LayoutDashboard, 
   FileText, 
@@ -14,7 +17,7 @@ import { useAuth } from '../context/AuthContext';
 
 const Sidebar = ({ isOpen, onToggle }) => {
   const { user, logout } = useAuth();
-  const location = useLocation();
+  const pathname = usePathname();
 
   const menuItems = [
     {
@@ -115,12 +118,12 @@ const Sidebar = ({ isOpen, onToggle }) => {
         {/* Navigation */}
         <nav className="flex-1 p-4 space-y-1">
           {menuItems.map((item) => {
-            const isActive = location.pathname.startsWith(item.path);
+            const isActive = pathname.startsWith(item.path);
             
             return (
-              <NavLink
+              <Link
                 key={item.name}
-                to={item.path}
+                href={item.path}
                 className={`
                   group flex items-center space-x-3 px-3 py-2 rounded-lg
                   transition-colors duration-200
@@ -136,20 +139,20 @@ const Sidebar = ({ isOpen, onToggle }) => {
                   <p className="text-sm font-medium truncate">{item.name}</p>
                   <p className="text-xs text-gray-500 truncate">{item.description}</p>
                 </div>
-              </NavLink>
+              </Link>
             );
           })}
         </nav>
 
         {/* Quick Actions */}
         <div className="p-4 border-t border-gray-200">
-          <NavLink
-            to="/records/add"
+          <Link
+            href="/records/add"
             className="flex items-center justify-center space-x-2 w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
           >
             <PlusCircle className="w-4 h-4" />
             <span className="text-sm font-medium">Add Record</span>
-          </NavLink>
+          </Link>
         </div>
 
         {/* Footer */}
